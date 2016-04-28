@@ -36,7 +36,7 @@ public class TouchInput : MonoBehaviour {
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
 
-            if (lastPosition.x < transform.position.x)
+            /*if (lastPosition.x < transform.position.x)
             {
                 print("going rigth!");
             }
@@ -51,7 +51,7 @@ public class TouchInput : MonoBehaviour {
             if (lastPosition.y > transform.position.y)
             {
                 print("going down!");
-            }
+            }*/
 
         }
 
