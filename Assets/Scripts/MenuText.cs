@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class MenuText : MonoBehaviour {
 
     Text rsltext;
+    Text gameTime;
+    int Gametime;
     string result;
     int alo;
 
@@ -29,9 +32,22 @@ public class MenuText : MonoBehaviour {
         Txt2Field();
     }
 
-    void Settings()
+    public void Settings()
     {
         result = "Set a timer for how long you want to play this is not necessarry";
         Txt2Field();
+    }
+
+    public void Play()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void GameTime(string input)
+    {
+        int ametime = int.Parse(input);
+        print(ametime);
+        Gametime = ametime;
+        print(Gametime);
     }
 }
