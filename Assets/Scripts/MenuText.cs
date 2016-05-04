@@ -32,6 +32,12 @@ public class MenuText : MonoBehaviour {
         Txt2Field();
     }
 
+    public void About()
+    {
+        result = "ABOUT THIS GAME YADA Yada YADAAAA........YAda";
+        Txt2Field();
+    }
+
     public void Settings()
     {
         result = "Set a timer for how long you want to play this is not necessarry";
