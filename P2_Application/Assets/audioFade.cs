@@ -16,12 +16,13 @@ public class audioFade : MonoBehaviour {
     {
         if (fish.transform.position.y < -2)
         {
-            sound.minDistance = 5;
+            sound.volume = sound.minDistance;
+            print("downbelow");
         }
 
     }
 
-    /*void OnTriggerStay2D(Collider2D other)
+    /*void OnTriggerStay(Collider other)
     {
         if (other.attachedRigidbody)
         {
