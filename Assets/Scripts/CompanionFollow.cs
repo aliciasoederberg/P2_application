@@ -12,6 +12,7 @@ public class CompanionFollow : MonoBehaviour {
     bool attached2Player = false;
     bool greetingPlayer = false;
     bool readyToParent = true;
+    bool parented = false;
     public float offSetX;
     public float offSetY;
     private Vector3 mousePosition;
