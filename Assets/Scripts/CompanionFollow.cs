@@ -49,7 +49,7 @@ public class CompanionFollow : MonoBehaviour {
         }
         else if (greetingPlayer == true)
         {
-            moveSpeed = 0.001f;
+            moveSpeed = 0.01f;
         }
         else
         {
@@ -75,9 +75,7 @@ public class CompanionFollow : MonoBehaviour {
 
                 float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-
-                mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeedfollowMode);
+                
             }
 
         }
@@ -86,7 +84,7 @@ public class CompanionFollow : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (hitInfo.name == "Charecter")
+        if (hitInfo.name == "Character")
         {
             attached2Player = true;
         }
