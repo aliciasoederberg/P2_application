@@ -58,8 +58,8 @@ public class CompanionFollow : MonoBehaviour {
 
         if (readyToParent == true)
         {
-            playerX = GameObject.Find("Charecter").transform.position.x;
-            playerY = GameObject.Find("Charecter").transform.position.y;
+            playerX = GameObject.Find("Character").transform.position.x;
+            playerY = GameObject.Find("Character").transform.position.y;
             charecterLocation = new Vector3(playerX + offSetX, playerY + offSetY, 0.0f);
             transform.position = Vector2.Lerp(transform.position, charecterLocation, moveSpeed);
         }
