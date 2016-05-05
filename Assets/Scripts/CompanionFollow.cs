@@ -14,25 +14,27 @@ public class CompanionFollow : MonoBehaviour {
     bool readyToParent = true;
     public float offSetX;
     public float offSetY;
-    public KeyCode moveUp;
-    public KeyCode moveDown;
-    public KeyCode MoveLeft;
-    public KeyCode MoveRight;
+    private Vector3 mousePosition;
+    private Vector3 touchPosition;
+    public float moveSpeedfollowMode = 0.01F;
+    private Vector3 lastPosition;
     Rigidbody2D rb2d;
 
     // Use this for initialization
     void Start ()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        child = GameObject.Find("Companion (2)");
-        parent = GameObject.Find("Charecter");
+        child = GameObject.Find("Companion");
+        parent = GameObject.Find("Character");
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
 
-        if(transform.position == charecterLocation)
+        lastPosition = transform.position;
+
+        if (transform.position == charecterLocation)
         {
             print("Kebab jeg er der nu");
             //attached2Player = false;
@@ -63,28 +65,22 @@ public class CompanionFollow : MonoBehaviour {
         }
         else
         {
-            if (Input.GetKey(moveUp))
+            if (Input.GetMouseButton(0))
             {
-                rb2d.velocity = new Vector2(0, 1);
-            }
-            else if (Input.GetKey(moveDown))
-            {
-                rb2d.velocity = new Vector2(0, -1);
-            }
-            else if (Input.GetKey(MoveLeft))
-            {
-                rb2d.velocity = new Vector2(-1, 0);
-            }
-            else if (Input.GetKey(MoveRight))
-            {
-                rb2d.velocity = new Vector2(1, 0);
-            }
-            else
-            {
-                rb2d.velocity = new Vector2(0, 0);
-            }
-        }
+                Vector3 mousePos = Input.mousePosition;
 
+                Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
+                mousePos.x = mousePos.x - objectPos.x;
+                mousePos.y = mousePos.y - objectPos.y;
+
+                float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+                mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeedfollowMode);
+            }
+
+        }
     }
 
 
