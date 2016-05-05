@@ -3,6 +3,8 @@ using System.Collections;
 
 public class CompanionFollow : MonoBehaviour {
 
+    public string companionName;
+    public string companionDesti;
     private Vector3 charecterLocation;
     private float moveSpeed = 0f;
     private float playerX;
@@ -25,8 +27,8 @@ public class CompanionFollow : MonoBehaviour {
     void Start ()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        child = GameObject.Find("Companion");
-        parent = GameObject.Find("Character");
+        child = GameObject.Find(companionName);
+        parent = GameObject.Find(companionDesti);
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class CompanionFollow : MonoBehaviour {
 
         if (transform.position == charecterLocation)
         {
-            print("Kebab jeg er der nu");
+            //print("Kebab jeg er der nu");
             //attached2Player = false;
             readyToParent = false;
             child.transform.parent = parent.transform;
@@ -59,8 +61,8 @@ public class CompanionFollow : MonoBehaviour {
 
         if (readyToParent == true)
         {
-            playerX = GameObject.Find("Character").transform.position.x;
-            playerY = GameObject.Find("Character").transform.position.y;
+            playerX = GameObject.Find(companionDesti).transform.position.x;
+            playerY = GameObject.Find(companionDesti).transform.position.y;
             charecterLocation = new Vector3(playerX + offSetX, playerY + offSetY, 0.0f);
             transform.position = Vector2.Lerp(transform.position, charecterLocation, moveSpeed);
         }
@@ -73,12 +75,12 @@ public class CompanionFollow : MonoBehaviour {
                 Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
                 mousePos.x = mousePos.x - objectPos.x;
                 mousePos.y = mousePos.y - objectPos.y;
-
+                
                 float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
                 
             }
-
+            
         }
     }
 
